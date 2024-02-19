@@ -1,0 +1,3 @@
+type Card ={
+    title: string
+}

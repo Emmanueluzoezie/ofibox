@@ -2,22 +2,11 @@ import { generateSigner, signerIdentity, createSignerFromKeypair, publicKey, Key
 import { createTree } from '@metaplex-foundation/mpl-bubblegum'
 import 'dotenv/config'
 import { Wallet } from "@coral-xyz/anchor"
+import { getKeypair } from './data'
 
-export const createMerkleTree = async (umi: Umi, wallet: Wallet) => {
-
+export const createMerkleTree = async (umi: Umi) => {
     try {
-        const privateKeyString = process.env.PRIVATE_KEY;
-
-        if (!privateKeyString) {
-            throw new Error('Private key is undefined');
-        }
-
-        const secretKeyArray = JSON.parse(privateKeyString);
-
-        const keypair: Keypair = {
-            publicKey: publicKey("ofbuPxNVCoCNjVyeeQc9yWL8R7P2TSwPhe8aUsSqmUG"),
-            secretKey: new Uint8Array(secretKeyArray)
-        }
+        const keypair = getKeypair()
 
         const signer = await createSignerFromKeypair(umi, keypair);
         umi.use(signerIdentity(signer));

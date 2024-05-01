@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-zinc-900;
+  }
+
+  .primary-text-color{
+    @apply bg-yellow-300 font-semibold
+  }
+
+  .secondary-text-color{
+    @apply text-zinc-50
+  }
+
+  .label-color{
+    @apply font-bold text-zinc-50
+  }
+
+  .active-primary-button {
+    @apply bg-yellow-300 text-zinc-900 w-full rounded p-2 text-sm font-bold
+  }
+  
+  .active-secondary-button{
+    @apply text-zinc-50 bg-zinc-900 rounded p-2 text-sm font-bold
+  }
+
+  .header-card{
+    @apply flex flex-col items-center p-1 text-yellow-300
+  }
+}

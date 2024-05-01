@@ -20,7 +20,7 @@ const AllCardsComponent: React.FC<CardProps> = ({ cards, fetchCards }) => {
       {loading.state && loading.type === "card" ?
         <CardLoaders /> 
         :
-        <div>
+        <div className='flex flex-wrap justify-center px-4'>
           {cards.map((card) => (
             <div key={card.id}>
              {card.template === "default" ?

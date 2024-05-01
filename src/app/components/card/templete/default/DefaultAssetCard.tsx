@@ -23,9 +23,9 @@ const DefaultAssetCard: React.FC<DefaultAssetCardProps> = ({ card }) => {
     }
 
     return (
-        <div className='w-fit border-2 bg-gray-100 shadow-2xl'>
+        <div className='w-fit m-2 bg-gray-100 shadow-2xl'>
             {/* {currentStoreScreen !== "deck" && */}
-            <div className='p-2 pl-4 flex items-center justify-between'>
+            <div className='p-2 pb-0 pl-4 flex items-center justify-between'>
                 <div className='p-1 bg-slate-300 rounded-full cursor-pointer'><FaPlus className='text-[14px]' onClick={handleAddToDeck} /></div>
                 <h2 className='text-center text-[14px] flex-1'>Add to Deck</h2>
             </div>

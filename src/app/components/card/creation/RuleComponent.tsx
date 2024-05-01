@@ -12,7 +12,7 @@ const RuleComponent = () => {
 
     return (
         <div className=" flex w-11/12 mx-auto">
-            <textarea name="" placeholder=" Describe the rules of this card?..." id="" cols={30} rows={2} maxLength={70} className="text-zinc-50 bg-zinc-900 w-full rounded-md p-1 border-0 outline-none" onChange={handleChange}></textarea>
+            <textarea name="" placeholder=" Describe the rules of this card?..." id="" cols={30} rows={2} maxLength={70} className="text-zinc-50 bg-zinc-900 w-full rounded-md p-1 border-0 outline-none text-[14px] px-2" onChange={handleChange}></textarea>
         </div>
     )
 }

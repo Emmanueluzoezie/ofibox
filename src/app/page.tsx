@@ -45,7 +45,7 @@ export default function Home() {
       {loading.state && <LoaderComponent />}
       {user === undefined && showLoginScreen && <LoginScreen />}
       <div
-      className={`z-40 h-full ${showLoginButton  || showPermissionToProceed || loading.state ? "blur-sm" : ""}`}
+      className={`z-40 h-full `}
       >
         <Header /> 
         {showCardCreation ?
@@ -71,3 +71,6 @@ export default function Home() {
     </main>
   );
 }
+
+
+// ${showLoginButton  || showPermissionToProceed || loading.state ? "blur-sm" : ""}

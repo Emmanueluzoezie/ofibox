@@ -89,14 +89,14 @@ const CreateCardButtons = ({ uploadUserCard }: any) => {
 
   return (
     <>
-      <div className={`fixed bottom-1 pb-2 inset-x-0 bg-zinc-800 space-y-3 mx-auto rounded-xl w-11/12`}>
+      <div className={`fixed bottom-1 pb-2 inset-x-0 bg-zinc-800 space-y-2 mx-auto rounded-xl w-11/12`}>
         <div className=" flex items-end w-11/12 mx-auto">
           <label htmlFor='media' className="flex items-center w-5/12 justify-between mx-auto">
             <div className=" flex items-center">
-              <div className=" bg-yellow-300 text-zinc-200 w-10 h-10 rounded-l flex justify-center items-center ">
+              <div className=" bg-yellow-300 text-zinc-200 w-10 h-9 rounded-l flex justify-center items-center ">
                 <svg className='text-zinc-200 ' xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M246.309-148.001q-41.308 0-69.808-28.5-28.5-28.5-28.5-69.808v-65.461q0-17.769 12.616-30.384 12.615-12.615 30.384-12.615t30.384 12.615Q234-329.539 234-311.77v65.461q0 4.616 3.846 8.463 3.847 3.846 8.463 3.846h467.382q4.616 0 8.463-3.846 3.846-3.847 3.846-8.463v-65.461q0-17.769 12.615-30.384 12.615-12.615 30.384-12.615t30.384 12.615q12.616 12.615 12.616 30.384v65.461q0 41.308-28.5 69.808-28.5 28.5-69.808 28.5H246.309Zm189.692-499.462-76.923 76.923q-12.923 12.923-30.192 13.308-17.269.384-30.577-12.923-13.692-13.308-13.499-30.576.192-17.269 13.499-30.577l146.384-146.383q7.615-7.615 15.846-10.923 8.23-3.308 18.461-3.308 10.231 0 18.461 3.308 8.231 3.308 15.846 10.923l146.384 146.383q12.923 12.923 13.307 29.884.385 16.961-13.307 30.269-13.308 13.307-30.384 13.115-17.077-.192-30.385-13.5l-76.923-75.923v282.002q0 17.768-12.615 30.384-12.615 12.615-30.384 12.615t-30.384-12.615q-12.615-12.616-12.615-30.384v-282.002Z" /></svg>
               </div>
-              <p className="text-xs uppercase w-max pl-3 pr-4 h-10 flex items-center justify-center bg-zinc-900 rounded-r text-zinc-200 ">upload</p>
+              <p className="text-xs uppercase w-max pl-3 pr-4 h-9 flex items-center justify-center bg-zinc-900 rounded-r text-zinc-200 ">upload</p>
             </div>
           </label>
           <input type="file" accept='.jpeg,.jpg,.png' onChange={uploadImage} name="media" id='media' style={{ display: 'none' }} />

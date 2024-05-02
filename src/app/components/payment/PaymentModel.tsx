@@ -3,10 +3,9 @@ import { MdKeyboardBackspace } from 'react-icons/md';
 import QrCodePayment from './QrCodePayment';
 import SuccessComponent from './SuccessComponent';
 import { setShowPermissionToProceed } from '@/slice/CardSlice';
-import { selectValidatedTransaction, setIsPaymentCompleted, setShowPaymentModal, setValidatedTransaction } from '@/slice/PaymentSlice';
+import { selectAmountToBeDebited, selectValidatedTransaction, setIsPaymentCompleted, setShowPaymentModal, setValidatedTransaction } from '@/slice/PaymentSlice';
 import { useDynamicContext, useSendBalance } from '@dynamic-labs/sdk-react-core';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAmountToBeDebited } from '@/slice/userSlice';
 
 const PaymentModel = () => {
   const [showPaymentOption, setShowPaymentOption] = useState(true)
@@ -21,12 +20,12 @@ const PaymentModel = () => {
 
     const handleWalletPayment = async() => {
         try {
-          if(!paymentAmount || !WalletAddress){
+          if(!WalletAddress){
             return
           }
           const tx = await open({
             recipientAddress: WalletAddress,
-            value:  BigInt(0.015 * 1000000000),
+            value:  BigInt(paymentAmount.total * 1000000000),
           });
           
           dispatch(setValidatedTransaction(true))

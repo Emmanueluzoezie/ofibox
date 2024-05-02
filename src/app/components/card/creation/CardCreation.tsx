@@ -9,12 +9,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useDynamicContext } from '@dynamic-labs/sdk-react-core'
 import LoginPermission from '../../login/LoginPermission'
 import LoginScreen from '../../login/LoginScreen'
-import { selectActionInput, selectCardToImage, selectCurrentTemplate, selectCurrentTemplateId, selectImageInput, selectPriceInput, selectRankInput, selectRuleInput, selectShowPermissionToProceed, selectThemeInput, selectTitleInput, selectTollInput, setActionInput, setCardToImage, setImageInput, setPriceInput, setRankInput, setRuleInput, setShowPermissionToProceed, setThemeInput, setTitleInput, setTollInput } from '@/slice/CardSlice'
-import { selectIsPaymentCompleted, setShowPaymentModal } from '@/slice/PaymentSlice'
+import { selectActionInput, selectCardToImage, selectCurrentTemplate, selectCurrentTemplateId, selectImageInput, selectPriceInput, selectRankInput, selectRuleInput, selectShowPermissionToProceed, selectThemeInput, selectTitleInput, selectTollAmount, selectTollInput, setActionInput, setCardToImage, setImageInput, setPriceInput, setRankInput, setRuleInput, setShowPermissionToProceed, setThemeInput, setTitleInput, setTollInput } from '@/slice/CardSlice'
+import { selectAmountToBeDebited, selectIsPaymentCompleted, setAmountToBeDebited, setShowPaymentModal } from '@/slice/PaymentSlice'
 import * as htmlToImage from 'html-to-image';
 import axios from 'axios'
 import PermissionToProceedComponent from './PermissionToProceedComponent'
-import { selectAmountToBeDebited, setAmountToBeDebited } from '@/slice/userSlice'
 
 const CardCreation = () => {
   const [isCreationFunctionCalled, setIsCreationFunctionCalled] = useState(false)
@@ -41,15 +40,36 @@ const CardCreation = () => {
   const currentTemplateId = useSelector(selectCurrentTemplateId)
   const currentTemplate = useSelector(selectCurrentTemplate)
   const tollCurrency = useSelector(selectCurrentTemplateId)
-  const tollAmount = useSelector(selectAmountToBeDebited)
+  const tollAmount = useSelector(selectTollAmount)
   const creationAmount = useSelector(selectAmountToBeDebited)
 
   const preset_key = process.env.NEXT_PUBLIC_PRESET_KEY
   const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_NAME
-  const cardCreationAmount = process.env.NEXT_PUBLIC_PAYMENT_AMOUNT
   const element = document.getElementById(currentTemplateId);
 
-  const handleShowPermission = async () => { }
+  const handleShowPermission = async () => { 
+    dispatch(setLoadingState({
+      state: true,
+      type: "circle"
+    }))
+
+    const response = await axios.get("https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd")
+
+    const total =   (creationAmount.creation + creationAmount.template) / (response.data.solana.usd)
+
+    dispatch(setAmountToBeDebited({
+      creation: creationAmount.creation,
+      template: creationAmount.template,
+      total: Number(total.toFixed(4))
+    }))
+
+    dispatch(setShowPermissionToProceed(true))
+
+    dispatch(setLoadingState({
+      state: false,
+      type: ""
+    }))
+  }
 
   const handleCardCreation = async () => {
     console.log("CLicked")
@@ -67,7 +87,6 @@ const CardCreation = () => {
         return
       }
 
-      dispatch(setAmountToBeDebited(creationAmount + Number(cardCreationAmount)))
       if (user.verifiedCredentials[0].address === undefined) {
         dispatch(setShowLoginButton(true))
         return
@@ -163,7 +182,7 @@ const CardCreation = () => {
         {showPermissionToProceed &&
           <PermissionToProceedComponent handleCardCreation={handleCardCreation}/>
         }
-        <CreateCardButtons uploadUserCard={handleCardCreation} />
+        <CreateCardButtons uploadUserCard={handleShowPermission} />
       </div>
     </div>
   )

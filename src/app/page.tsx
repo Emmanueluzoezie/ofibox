@@ -30,12 +30,17 @@ export default function Home() {
 
   const getCardCreationStatus = (): boolean => {
     const storedValue = localStorage.getItem("isCardCreation");
-    return Boolean(storedValue);
+    
+    if(storedValue === "true"){
+      return true
+    } else {
+      return false
+    }
   };
 
   useEffect(() => {
     const isCardCreation = getCardCreationStatus();
-    if (isCardCreation) {
+    if (isCardCreation === true) {
       dispatch(setShowCardCreation(true))
     }
   }, [])

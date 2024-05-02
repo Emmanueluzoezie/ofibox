@@ -13,8 +13,7 @@ import BigNumber from 'bignumber.js';
 import { useDispatch, useSelector } from "react-redux";
 import { selectTitleInput } from "@/slice/CardSlice";
 import { createQR } from "@/lib/createQr";
-import { setIsPaymentCompleted, setValidatedTransaction } from "@/slice/PaymentSlice";
-import { selectAmountToBeDebited } from "@/slice/userSlice";
+import { selectAmountToBeDebited, setIsPaymentCompleted, setValidatedTransaction } from "@/slice/PaymentSlice";
 ;
 
 const ofiBoxAddress = process.env.NEXT_PUBLIC_OFIBOX_ADDRESS
@@ -32,7 +31,7 @@ export default function QrCodePayment() {
   const CONNECTION = new Connection(connectionString, 'confirmed');
   
   const recipient = new PublicKey(ofiBoxAddress);
-  const amount = new BigNumber(Number(paymentAmount));
+  const amount = new BigNumber(Number(paymentAmount.total));
   const reference = useMemo(() => Keypair.generate().publicKey, []);
   const label = 'OFIBOX';
   const message = `Payment for creating ${titleInput} card.`;

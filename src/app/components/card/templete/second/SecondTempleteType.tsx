@@ -1,16 +1,24 @@
 "use client"
 import React from 'react'
 import { setCurrentTempalte, setCurrentTemplateId, setImageInput, } from '@/slice/CardSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Image from 'next/image'
+import { setAmountToBeDebited } from '@/slice/PaymentSlice'
 
 const SecondTempleteType = () => {
   const dispatch = useDispatch()
+
+  const cardCreationAmount = process.env.NEXT_PUBLIC_PAYMENT_AMOUNT
 
   const handleTemplateChange = () => {
     dispatch(setCurrentTempalte("second"))
     dispatch(setImageInput("https://res.cloudinary.com/dulqfh3po/image/upload/v1712277589/0_1_lei38r.png"));
     dispatch(setCurrentTemplateId("second_template_id"));
+    dispatch(setAmountToBeDebited({
+      creation: Number(cardCreationAmount),
+      template: 0.5,
+      total: 0
+    }))
   }
 
   return (

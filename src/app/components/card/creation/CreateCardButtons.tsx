@@ -1,6 +1,6 @@
 "use client"
 import { selectActionInput, selectImageInput, selectPriceInput, selectRankInput, selectRuleInput, selectShowPermissionToProceed, selectThemeInput, selectTitleInput, selectTollCurrency, selectTollInput, setImageInput, setRankInput, setShowImageLoader, setTollCurrency } from '@/slice/CardSlice'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import TitleFormComponent from './TitleFormComponent'
 import RuleComponent from './RuleComponent'
@@ -13,6 +13,7 @@ import RankSlider from './RankSlider'
 import axios from 'axios'
 import { currencies } from '@/lib/data'
 import Image from 'next/image'
+import { setAmountToBeDebited } from '@/slice/PaymentSlice'
 
 const CreateCardButtons = ({ uploadUserCard }: any) => {
   const dispatch = useDispatch()
@@ -34,6 +35,7 @@ const CreateCardButtons = ({ uploadUserCard }: any) => {
 
   const preset_key = process.env.NEXT_PUBLIC_PRESET_KEY
   const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_NAME
+  const cardCreationAmount = process.env.NEXT_PUBLIC_PAYMENT_AMOUNT
 
   const filledInputsCount =
     (imageInput ? 1 : 0) +
@@ -86,6 +88,14 @@ const CreateCardButtons = ({ uploadUserCard }: any) => {
   const handleClick = (click: string) => {
     dispatch(setTollCurrency(click))
   }
+
+  useEffect(() => {
+    dispatch(setAmountToBeDebited({
+      creation: Number(cardCreationAmount),
+      template: 0,
+      total: 0
+    }))
+  }, [])
 
   return (
     <>

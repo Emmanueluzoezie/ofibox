@@ -23,3 +23,9 @@ type Card = {
     template: string
     image: string
 }
+
+type paymentList = {
+    creation: number,
+    template: number,
+    total: number
+}

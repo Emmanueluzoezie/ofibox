@@ -1,15 +1,23 @@
 import { setCurrentTempalte, setCurrentTemplateId,  setImageInput } from '@/slice/CardSlice'
+import { selectAmountToBeDebited, setAmountToBeDebited } from '@/slice/PaymentSlice'
 import Image from 'next/image'
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const DefaultTemplateType = () => {
   const dispatch = useDispatch()
+  
+  const cardCreationAmount = process.env.NEXT_PUBLIC_PAYMENT_AMOUNT
 
   const handleTemplateChange = () => {
     dispatch(setCurrentTempalte("default"))
     dispatch(setImageInput("https://res.cloudinary.com/dj87af1qg/image/upload/v1711644499/crawel_xc3qnj.png"));
     dispatch(setCurrentTemplateId("default_template_id"));
+    dispatch(setAmountToBeDebited({
+      creation: Number(cardCreationAmount),
+      template: 0.5,
+      total: 0
+    }))
   }
 
   return (

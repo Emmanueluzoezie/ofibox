@@ -11,6 +11,7 @@ import { selectShowPermissionToProceed } from "@/slice/CardSlice";
 import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 import Link from "next/link";
 import { TbShoppingCartFilled } from "react-icons/tb";
+import { MdPersonPin } from "react-icons/md";
 import { useEffect } from "react";
 import { selectShowPaymentModal } from "@/slice/PaymentSlice";
 import LoginScreen from "./components/login/LoginScreen";
@@ -30,8 +31,8 @@ export default function Home() {
 
   const getCardCreationStatus = (): boolean => {
     const storedValue = localStorage.getItem("isCardCreation");
-    
-    if(storedValue === "true"){
+
+    if (storedValue === "true") {
       return true
     } else {
       return false
@@ -50,9 +51,9 @@ export default function Home() {
       {loading.state && <LoaderComponent />}
       {user === undefined && showLoginScreen && <LoginScreen />}
       <div
-      className={`z-40 h-full `}
+        className={`z-40 h-full `}
       >
-        <Header /> 
+        <Header />
         {showCardCreation ?
           <CardCreation />
           :
@@ -60,9 +61,9 @@ export default function Home() {
             <VideoComponent />
             <div className='flex  w-full fixed bottom-0 inset-x-0 '>
               <div className='p-2 pb-4 flex items-center justify-around w-full'>
-                <button>
-                  <TbShoppingCartFilled className='text-2xl md:text-4xl text-yellow-300' />
-                </button>
+                <Link href="/profile">
+                  <MdPersonPin className='text-2xl md:text-4xl text-yellow-300' />
+                </Link>
                 <MdOutlineAddCircleOutline onClick={() => dispatch(setShowCardCreation(true))} className="text-3xl cursor-pointer text-yellow-300" />
                 <Link href="/assets">
                   <TbShoppingCartFilled className='text-2xl md:text-4xl text-yellow-300' />

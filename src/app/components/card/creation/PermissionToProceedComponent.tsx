@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DisplayCard from './DisplayCard'
-import { setShowPermissionToProceed } from '@/slice/CardSlice'
+import { setShowAccessibilty, setShowPermissionToProceed } from '@/slice/CardSlice'
 import { selectAmountToBeDebited } from '@/slice/PaymentSlice'
 
 type Props = {
@@ -12,6 +12,12 @@ const PermissionToProceedComponent = ({handleCardCreation}: Props) => {
 
     const dispatch = useDispatch()
     const creationAmount = useSelector(selectAmountToBeDebited)
+
+
+    const handleBack = () => {
+        dispatch(setShowAccessibilty(true))
+        dispatch(setShowPermissionToProceed(false))
+    }
 
     return (
         <div className='w-full fixed h-full top-0 left-0 bg-inherit z-40'>
@@ -37,7 +43,7 @@ const PermissionToProceedComponent = ({handleCardCreation}: Props) => {
                         </div>
                     </div>
                     <div className="flex mt-6 border-t-2 border-yellow-300">
-                        <button className='w-full p-3 font-bold text-zinc-300' onClick={() => dispatch(setShowPermissionToProceed(false))}>Cancel</button>
+                        <button className='w-full p-3 font-bold text-zinc-300' onClick={handleBack}>Cancel</button>
                         <button className='w-full p-3 font-bold border-l-2 text-yellow-300' onClick={handleCardCreation}>Proceed</button>
                     </div>
                 </div>

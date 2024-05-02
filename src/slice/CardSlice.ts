@@ -18,6 +18,8 @@ interface CardState {
     tollCurrency: string
     tollAmount: number
     isCardCreation: boolean
+    typeOfCard: string
+    showAccessibility: boolean
 }
 
 const initialState: CardState = {
@@ -36,7 +38,9 @@ const initialState: CardState = {
     currentTemplateId: "default_template_id",
     tollCurrency: "",
     tollAmount: 0,
-    isCardCreation: false
+    isCardCreation: false, 
+    typeOfCard: "",
+    showAccessibility: false
 }
 
 export const cardSlice = createSlice({
@@ -91,10 +95,16 @@ export const cardSlice = createSlice({
         setIsCardCreation: (state, action: PayloadAction<boolean>) => {
             state.isCardCreation = action.payload;
         },
+        setTypeOfCard: (state, action: PayloadAction<string>) => {
+            state.typeOfCard = action.payload;
+        },
+        setShowAccessibilty: (state, action: PayloadAction<boolean>) => {
+            state.showAccessibility = action.payload;
+        },
     }
 });
 
-export const { setShowImageLoader, setTitleInput, setPriceInput, setTollInput, setImageInput, setCardToImage, setRankInput, setRuleInput, setThemeInput, setActionInput, setShowPermissionToProceed, setCurrentTemplateId, setCurrentTempalte, setTollCurrency, setTollAmount, setIsCardCreation } = cardSlice.actions;
+export const { setShowImageLoader, setTitleInput, setPriceInput, setTollInput, setImageInput, setCardToImage, setRankInput, setRuleInput, setThemeInput, setActionInput, setShowPermissionToProceed, setCurrentTemplateId, setCurrentTempalte, setTollCurrency, setTollAmount, setIsCardCreation, setTypeOfCard, setShowAccessibilty } = cardSlice.actions;
 
 export const selectShowImageLoader = (state: RootState) => state.card.showImageLoader;
 export const selectTitleInput = (state: RootState) => state.card.titleInput;
@@ -112,5 +122,7 @@ export const selectCurrentTemplateId = (state: RootState) => state.card.currentT
 export const selectTollCurrency = (state: RootState) => state.card.tollCurrency
 export const selectTollAmount = (state: RootState) => state.card.tollAmount
 export const selectIsCardCreation = (state: RootState) => state.card.isCardCreation
+export const selectTypeOfCard = (state: RootState) => state.card.typeOfCard
+export const selectShowAccessible = (state: RootState) => state.card.showAccessibility
 
 export default cardSlice.reducer;

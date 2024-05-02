@@ -36,7 +36,7 @@ const DefaultTemplete = () => {
                      <p className=" absolute bottom-16 right-0 bg-green-500 py-1 w-max px-6 text-white ">${priceInput}</p>
                      <p className=" absolute bottom-0 right-0 text-xs  bg-yellow-300 p-2 h-[64px] w-full break-words">{ruleInput}</p>
                      {imageLoading? 
-                        <div className='w-[215px] h-[285px] bg-[#d2d2d2]'/>
+                        <div className='w-[215px] h-[265px] bg-[#d2d2d2]'/>
                         :
                         <Image src={imageInput} objectFit='contain' className=" w-[215px] h-[265px]  object-cover" width={100} height={100} alt='' />
                     }

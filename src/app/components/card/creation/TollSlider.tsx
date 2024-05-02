@@ -29,11 +29,11 @@ const TollSlider = () => {
                     {(action === "pay" || action === "collect") && <span className='pl-1'>{tollCurrency}</span>}    
                 </p>
                   <div className=''>
-                    <button className='border-[1px] py-[2px] px-[4px] mx-1 rounded text-[10px]' onClick={() => dispatch(setTollInput(0))}>Reset</button>
-                    <button className='border-[1px] py-[2px] px-[4px] mx-1 rounded text-[10px]' onClick={() => multiplyToll(2)}>x2</button>
-                    <button className='border-[1px] py-[2px] px-[4px] mx-1 rounded text-[10px]' onClick={() => multiplyToll(3)}>x3</button>
-                    <button className='border-[1px] py-[2px] px-[4px] mx-1 rounded text-[10px]' onClick={() => multiplyToll(4)}>x4</button>
-                    <button className='border-[1px] py-[2px] px-[4px] mx-1 rounded text-[10px]' onClick={() => multiplyToll(5)}>x5</button>
+                    <button className='border-[1px] py-[1px] px-[4px] mx-1 rounded text-[10px] font-light' onClick={() => dispatch(setTollInput(0))}>Reset</button>
+                    <button className='border-[1px] py-[1px] px-[4px] mx-1 rounded text-[10px] font-light' onClick={() => multiplyToll(2)}>x2</button>
+                    <button className='border-[1px] py-[1px] px-[4px] mx-1 rounded text-[10px] font-light' onClick={() => multiplyToll(3)}>x3</button>
+                    <button className='border-[1px] py-[1px] px-[4px] mx-1 rounded text-[10px] font-light' onClick={() => multiplyToll(4)}>x4</button>
+                    <button className='border-[1px] py-[1px] px-[4px] mx-1 rounded text-[10px] font-light' onClick={() => multiplyToll(5)}>x5</button>
                   </div>
                 </div>
             <Slider onValueChange={handleSliderChange} min={1} max={100} className="bg-red-600 rounded-2xl" />

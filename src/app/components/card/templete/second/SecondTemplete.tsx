@@ -15,7 +15,7 @@ const SecondTemplete = () => {
 
     return (
         <>
-        <div className="h-[300px] w-[225px] content-evenly p-2 bg-gray-100 relative" id='second_template_id'>
+        <div className="h-[280px] w-[210px] content-evenly p-2 bg-gray-100 relative" id='second_template_id'>
             <div className="mx-auto h-[100%] w-12/12 bg-white">
                 <div className="relative">
                     <div className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center overflow-clip text-balance rounded bg-white text-lg font-black italic">{rankInput}</div>
@@ -31,15 +31,15 @@ const SecondTemplete = () => {
                         <p className="flex h-6 w-10 justify-center font-mono text-base font-bold">{tollInput}</p>
                     </div>
 
-                    <p className="absolute bottom-[68px] right-20 flex h-6 w-14 items-center justify-center rounded-t-md bg-green-500 text-white">${priceInput}</p>
+                    <p className="absolute bottom-16 right-20 flex h-6 w-14 items-center justify-center rounded-t-md bg-green-500 text-white">${priceInput}</p>
                     <div className="absolute inset-x-0 bottom-1 right-0 mx-auto w-11/12 rounded-md bg-white p-1 text-xs h-[64px]">
                         <p className='break-words w-full'>{ruleInput}</p>
                     </div>
 
                     {imageLoading? 
-                        <div className='w-[215px] h-[285px] bg-[#d2d2d2]'/>
+                        <div className='w-[215px] h-[265px] bg-[#d2d2d2]'/>
                         :
-                        <Image src={imageInput} objectFit='contain' className=" w-[215px] h-[285px]  object-cover" width={300} height={300} alt='' />
+                        <Image src={imageInput} objectFit='contain' className=" w-[215px] h-[265px]  object-cover" width={300} height={300} alt='' />
                     }
                 </div>
             </div>

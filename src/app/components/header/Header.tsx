@@ -65,7 +65,7 @@ const Header = () => {
       <button className='active-primary-button py-1' onClick={handleShowWhitePaper}>View WhitePaper</button>
 
       {user === undefined ?
-        <button className='active-primary-button' onClick={handleShowLogin}>Signin</button>
+        <button className='active-primary-button py-1' onClick={handleShowLogin}>Signin</button>
         :
         <WalletButtonComponent />
       }

@@ -51,31 +51,31 @@ const CardCreation = () => {
 
 
 
-  const handleShowPermission = async () => { 
+  const handleShowPermission = async () => {
 
-    try{
+    try {
       dispatch(setLoadingState({
         state: true,
         type: "circle"
       }))
-  
+
       if (user === undefined) {
         dispatch(setShowLoginButton(true))
         return
       }
-  
+
       const response = await axios.get("https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd")
-  
-      const total =   (creationAmount.creation + creationAmount.template) / (response.data.solana.usd)
-  
+
+      const total = (creationAmount.creation + creationAmount.template) / (response.data.solana.usd)
+
       dispatch(setAmountToBeDebited({
         creation: creationAmount.creation,
         template: creationAmount.template,
         total: Number(total.toFixed(4))
       }))
-  
+
       dispatch(setShowPermissionToProceed(true))
-    }catch(error){
+    } catch (error) {
 
     } finally {
       dispatch(setLoadingState({
@@ -117,7 +117,7 @@ const CardCreation = () => {
         return
       }
       const canvas = await htmlToImage.toPng(element)
-      
+
       const formData = new FormData();
       formData.append("file", canvas);
       formData.append("upload_preset", preset_key);
@@ -137,7 +137,7 @@ const CardCreation = () => {
         symbol: symbol,
         image: response?.data?.secure_url,
         description: `${user?.firstName, user?.lastName} Nft collection`,
-        rule: ruleInput, 
+        rule: ruleInput,
         rank: rankInput,
         action: actionInput,
         amount: priceInput,
@@ -195,42 +195,43 @@ const CardCreation = () => {
     <div className='h-[94%] md:h-[92%] pt-4'>
       <div className='h-full w-full'>
         {user === undefined && showLoginPermission && <LoginPermission />}
-        
-        <div className={`"mx-auto flex w-full items-center justify-center pt-5"`}>
-          <DisplayCard />
-          <TempleteComponent />
+        <div className='h-full lg:flex items-center lg:px-8'>
+          <div className={`"mx-auto flex w-full lg:flex-1 items-center justify-center pt-5"`}>
+            <DisplayCard />
+            <TempleteComponent />
+          </div>
+          <CreateCardButtons uploadUserCard={() => dispatch(setShowAccessibilty(true))} />
         </div>
         {showPermissionToProceed &&
-          <PermissionToProceedComponent handleCardCreation={handleCardCreation}/>
+          <PermissionToProceedComponent handleCardCreation={handleCardCreation} />
         }
-        {showAccessibility && 
+        {showAccessibility &&
           <div className='h-full w-full fixed top-0 left-0 flex z-50 items-center justify-center'>
-          <div className='w-full fixed h-[100%] top-0 left-0 z-50'>
-            <div className="relative w-full h-full">
-              <div className='absolute top-0 opacity-80 bg-gray-600 w-full h-full z-40' />
-              <div className='flex secondary-text-color justify-center h-full items-center w-full z-50 relative px-4'>
-                <div className='w-[150px] shadow-2xl pt-4 bg-zinc-900 rounded-2xl '>
-                  <button className='ml-3'>
-                  <MdKeyboardBackspace className='text-2xl' onClick={() => dispatch(setShowAccessibilty(false))}/>
-                  </button>
-                  <p className='text-[14px] px-4 pb-4 text-center'>Card Visibility</p>
-                  <div className='flex flex-col pb-8'>
-                    <div className='px-4 my-1 cursor-pointer flex items-center font-semibold font-mono' onClick={() => handleAccessibilty("public")}>
-                      <div className={`${accessibiltyType === "public"? "w-[11px] h-[11px] bg-yellow-300 text-yellow-300" : "w-[12px] h-[12px] border-[1px] border-yellow-300"}}`}/>
-                      <span className='text-[12px] pl-3'>Public</span>
-                    </div>
-                    <div className='px-4 my-1 cursor-pointer flex items-center font-semibold font-mono' onClick={() => handleAccessibilty("private")}>
-                      <div className={`${accessibiltyType === "private"? "w-[11px] h-[11px] bg-yellow-300 text-yellow-300" : "w-[12px] h-[12px] border-[1px] border-yellow-300"}}`}/>
-                      <span className='text-[12px] pl-3'>Private</span>
+            <div className='w-full fixed h-[100%] top-0 left-0 z-50'>
+              <div className="relative w-full h-full">
+                <div className='absolute top-0 opacity-80 bg-gray-600 w-full h-full z-40' />
+                <div className='flex secondary-text-color justify-center h-full items-center w-full z-50 relative px-4'>
+                  <div className='w-[150px] shadow-2xl pt-4 bg-zinc-900 rounded-2xl '>
+                    <button className='ml-3'>
+                      <MdKeyboardBackspace className='text-2xl' onClick={() => dispatch(setShowAccessibilty(false))} />
+                    </button>
+                    <p className='text-[14px] px-4 pb-4 text-center'>Card Visibility</p>
+                    <div className='flex flex-col pb-8'>
+                      <div className='px-4 my-1 cursor-pointer flex items-center font-semibold font-mono' onClick={() => handleAccessibilty("public")}>
+                        <div className={`${accessibiltyType === "public" ? "w-[11px] h-[11px] bg-yellow-300 text-yellow-300" : "w-[12px] h-[12px] border-[1px] border-yellow-300"}}`} />
+                        <span className='text-[12px] pl-3'>Public</span>
+                      </div>
+                      <div className='px-4 my-1 cursor-pointer flex items-center font-semibold font-mono' onClick={() => handleAccessibilty("private")}>
+                        <div className={`${accessibiltyType === "private" ? "w-[11px] h-[11px] bg-yellow-300 text-yellow-300" : "w-[12px] h-[12px] border-[1px] border-yellow-300"}}`} />
+                        <span className='text-[12px] pl-3'>Private</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div> 
-        </div>
+          </div>
         }
-        <CreateCardButtons uploadUserCard={() => dispatch(setShowAccessibilty(true))} />
       </div>
     </div>
   )

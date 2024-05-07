@@ -60,8 +60,8 @@ const WalletButtonComponent = () => {
   return (
     <>
     {primaryWallet?.address &&     
-        <div className="flex items-center bg-yellow-300 py-[2px] px-3  gap-2 rounded-3xl">
-            <div onClick={copyToClipboard} className=" cursor-pointer flex items-center rounded-md hover:bg-gray-700  pr-2 font-mono">                        
+        <div className="flex items-center bg-yellow-300 py-[2px] px-2  gap-2 rounded font-bold">
+            <div onClick={copyToClipboard} className=" cursor-pointer flex items-center rounded-md   font-mono">                        
                 <div className="h-6 w-6 rounded flex items-center justify-center ">
                     <FaRegCopy  className='text-[14px]'/>
                 </div>

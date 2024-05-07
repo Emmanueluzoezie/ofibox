@@ -7,6 +7,7 @@ interface AppState {
     showLoginButton: boolean;
     showLoginScreen: boolean;
     currentAssetScreen: string
+    showWhitePaper: boolean
 }
 
 const initialState: AppState = {
@@ -17,7 +18,8 @@ const initialState: AppState = {
     }, 
     showLoginButton: false,
     showLoginScreen: false,
-    currentAssetScreen: "all_asset"
+    currentAssetScreen: "all_asset",
+    showWhitePaper: false
 }
 
 export const appSlice = createSlice({
@@ -38,17 +40,21 @@ export const appSlice = createSlice({
         },
         setCurrentAssetScreen: (state, action: PayloadAction<string>) => {
             state.currentAssetScreen = action.payload
-        }
+        },
+        setShowWhitePaper: (state, action: PayloadAction<boolean>) => {
+            state.showWhitePaper = action.payload;
+        },
     }
 });
 
-export const { setShowCardCreation, setLoadingState, setShowLoginScreen, setShowLoginButton, setCurrentAssetScreen } = appSlice.actions;
+export const { setShowCardCreation, setLoadingState, setShowLoginScreen, setShowLoginButton, setCurrentAssetScreen, setShowWhitePaper } = appSlice.actions;
 
 export const selectShowCardCreation = (state: RootState) => state.app.showCardCreation
 export const selectLoadingState = (state: RootState) => state.app.loadingState
 export const selectShowLoginScreen = (state: RootState) => state.app.showLoginScreen;
 export const selectShowLoginButton = (state: RootState) => state.app.showLoginButton;
 export const selectCurrentAssetScreen = (state: RootState) => state.app.currentAssetScreen;
+export const selectShowWhitePaper = (state: RootState) => state.app.showWhitePaper;
 
 
 export default appSlice.reducer;

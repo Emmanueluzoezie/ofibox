@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import Header from "./components/header/Header";
 import VideoComponent from "./components/index/VideoComponent";
-import { selectLoadingState, selectShowCardCreation, selectShowLoginButton, selectShowLoginScreen, setShowCardCreation } from "@/slice/AppSlice";
+import { selectLoadingState, selectShowCardCreation, selectShowLoginButton, selectShowLoginScreen, selectShowWhitePaper, setShowCardCreation } from "@/slice/AppSlice";
 import PaymentModel from "./components/payment/PaymentModel";
 import CardCreation from "./components/card/creation/CardCreation";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
@@ -15,6 +15,7 @@ import { MdPersonPin } from "react-icons/md";
 import { useEffect } from "react";
 import { selectShowPaymentModal } from "@/slice/PaymentSlice";
 import LoginScreen from "./components/login/LoginScreen";
+import WhitePaperComponent from "./components/whitepaper/WhitePaperComponent";
 
 export default function Home() {
 
@@ -28,6 +29,7 @@ export default function Home() {
   const showPermissionToProceed = useSelector(selectShowPermissionToProceed)
   const showLoginButton = useSelector(selectShowLoginButton)
   const showLoginScreen = useSelector(selectShowLoginScreen)
+  const showWhitePaper = useSelector(selectShowWhitePaper)
 
   const getCardCreationStatus = (): boolean => {
     const storedValue = localStorage.getItem("isCardCreation");
@@ -49,6 +51,7 @@ export default function Home() {
   return (
     <main className="h-screen w-full">
       {loading.state && <LoaderComponent />}
+      {showWhitePaper && <WhitePaperComponent />}
       {user === undefined && showLoginScreen && <LoginScreen />}
       <div
         className={`z-40 h-full `}

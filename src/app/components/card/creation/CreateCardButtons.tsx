@@ -99,7 +99,7 @@ const CreateCardButtons = ({ uploadUserCard }: any) => {
 
   return (
     <>
-      <div className={`fixed bottom-1 pb-2 inset-x-0 bg-zinc-800 space-y-2 mx-auto rounded-xl w-11/12`}>
+      <div className={`fixed lg:relative bottom-1 pb-2 lg:pb-4 inset-x-0 bg-zinc-800 space-y-2 lg:space-y-4 mx-auto rounded-xl w-11/12 lg:flex-1`}>
         <div className=" flex items-end w-11/12 mx-auto">
           <label htmlFor='media' className="flex items-center w-5/12 mr-1 justify-between mx-auto">
             <div className=" flex items-center">
@@ -161,7 +161,7 @@ const CreateCardButtons = ({ uploadUserCard }: any) => {
         </div>
 
         <div className=" w-11/12 flex mx-auto mb-5">
-          <button className=" active-primary-button uppercase" onClick={uploadUserCard}>create</button>
+          <button className=" active-primary-button w-full uppercase py-2" onClick={uploadUserCard}>create</button>
         </div>
 
 
